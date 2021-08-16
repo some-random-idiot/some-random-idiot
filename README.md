@@ -17,12 +17,12 @@
 
 > TODO: Create a table of contents here.  Create a clickable link to each part of this document or other file containing the questions and answers. Each link on a separate line.
 
-[1. Basics](#1-basics)
-[2. Adding and Changing Things](#2-adding-and-changing-things)   
-[3. Undoing Changes](#3-undoing-changes)
-[4. Branch and Merge](#4-branch-and-merge)
-[5. Viewing Commits](#5-viewing-commits)
-[6. Favorites](#6-favorites)
+[1. Basics](#1-basics)<br/>
+[2. Adding and Changing Things](#2-adding-and-changing-things)  <br/> 
+[3. Undoing Changes](#3-undoing-changes)<br/>
+[4. Branch and Merge](#4-branch-and-merge)<br/>
+[5. Viewing Commits](#5-viewing-commits)<br/>
+[6. Favorites](#6-favorites)<br/>
 [Resources](#resources)
 
 ### Note on Paths
@@ -191,4 +191,3 @@ Try Git:
 [ProGitPdf]: https://progit2.s3.amazonaws.com/en/2016-03-22-f3531/progit-en.1084.pdf "Pro Git v.2 PDF on AWS. Longer, book format."
 [LearnGitInteractive]: https://learngitbranching.js.org "Interactive graphical git tutorial"
 [VisualizeGit]: http://git-school.github.io/visualizing-git/ "Online tools draws a graph of commits in a repo as you type"
-
