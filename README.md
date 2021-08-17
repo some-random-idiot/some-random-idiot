@@ -1,21 +1,4 @@
-> **Instructions**
-> 
-> 1. Answer these questions using Markdown format.   
-> 2. **Test that your answers are correct!** There is **no excuse** for submitting an incorrect answer, since you can verify your answers by experimentation.    
-> 3. After the title ("Using Git"), create a link to each section (Basics, Adding and Changing Things, Undoing Changes, etc.). One line per link.     
-> 4. Delete these instructions.    
-> 5. Check that your Markdown formatting is correct (points deducted if incorrect).  VS Code and IntelliJ have markdown previewers. See Sahanon's post on Discord for better VS Code Previewer.
-> 
-> There are 2 ways to display your answer as lines of *unformatted text* (for commands, not for text answers):
-> - (best) put the lines between triple backquotes, as in the source for this file:    
-    ```
-    unformatted text
-    ```
-> - leave 4 spaces at start of the line. The text on the line must **not** "look like" a Markdown numbered or bulleted item (if it does, Markdown will format it as a nested list item).
-
 ## Using Git
-
-> TODO: Create a table of contents here.  Create a clickable link to each part of this document or other file containing the questions and answers. Each link on a separate line.
 
 [1. Basics](#1-basics)<br/>
 [2. Adding and Changing Things](#2-adding-and-changing-things)  <br/> 
@@ -34,28 +17,28 @@ For the MS Windows command prompt, when using the command substitute a backslash
 ## 1. Basics
 
 1. When working with Git locally, what are these?  Describe each one in a sentence
-   * Staging area -
-   * Working copy -
-   * master -
-   * HEAD -
+   * Staging area - files and changes marked for commit, but not yet committed.
+   * Working copy - the copy of files you see and can edit. The working copy may include files ‘tracked’ by git and untracked files.
+   * master - a repository's primary branch.
+   * HEAD - a label that refers to the commit your working copy is based on.
 
 2. A git commit includes the author's name and email.  When you install git on a new machine (or in a new user account) you should perform these 2  git commands to tell git your name and email:
    ```
-   # Git configuration commands for a new account
-
-
+   git config –global user.name “[name]”
+   git config –global user.email “[email address]”
    ```
 3. If you want to specify a **different** name and email for a single project (instead of the global values in Item 2 above), in the working directory of that repository enter:
     ```
-    # Configuration commands for a single repository
-
+    git init [repository name]
     ``` 
 4. There are 2 ways to create a local Git repository.  What are they?
-   - todo: briefly describe first way
-   - todo: briefly describe second way
+   - Take a local directory that is currently not under version control, and turn it into a Git repository.
+   - Clone an existing Git repository from elsewhere.
 
 5. When you create a git repository in a directory named "/project1" by entering `git init`, Git will create a "hidden" directory for the local repository.  Where is the directory for this local repository (write the full path of the repository)?
-
+   ```
+   /project1/.git/
+   ```
 
 
 ## 2. Adding and Changing Things
@@ -74,83 +57,124 @@ test/
 ```     
 
 1. What is the command to add README.md and *everything* in the `src` directory to the git staging area?
-
+   ```
+   git add src
+   ```
 
 2. Write the command to add `test/test_a.py` to the staging area (but not any other files).
-
+   ```
+   git add test/test_a.py
+   ```
 
 3. Write a command to list the files in the staging area.
-
-
+   ```
+   git status
+   ```
 
 4. You decide you **don't** want to commit `test/test_a.py` to git.  The command to remove `test/test_a.py` from the staging area is:
-
+   ```
+   git rm --cached test/test_a.py
+   ```
 
 5. The command to commit everything in the staging area to the repository is:
-
-
+   ```
+   git commit -m "[commit message]"
+   ```
 
 6. You **never** want any files in the `out/` directory to be added to git. Describe 2 steps to configure the repo so git always ignores files in the `out/` directory:
-   - step one
-   - step two
+   - Create a file named `.gitignore` with the following written inside
+     ```
+     out/
+     ```
+   - Add the `.gitignore` file to the repo via the following commands:
+     ```
+     git add .gitignore
+     git commit -m "added .gitignore"
+     ```
 
 7. What is the command to move `a.py`, `b.py`, and `c.py` from the `src` directory to the top-level directory of the project, so that they will also be moved in the git repository?
-
+   ```
+   git mv src/* .
+   ```
 
 8. Commit this change with the message "moved src directory":
+   ```
+   git commit -m "moved src directory"
+   ```
 
-
-9. To add **all changed files** (but not untracked files) to the stagin area using a single command, enter:
-
+9. To add **all changed files** (but not untracked files) to the staging area using a single command, enter:
+   ```
+   git add -A
+   ```
     (After doing this you should use "git status" to verify you didn't add unintended files.)
 
 10. To **delete** the file `c.py` from your working copy **and** the repository, enter these two commands:
-
+   ```
+   git rm c.py
+   git commit -m "removed c.py"
+   ```
 
 
 ## 3. Undoing Changes
 
 1. To see the differences between your working copy of `a.py` and the `a.py` in the local repository (current version in the repo) enter:
-
+   ```
+   git diff a.py
+   ```
 
 2. If you decide you don't like the changes to `a.py`, what is the command to **replace** your working copy of `a.py` with the most recent (HEAD) version in the repository?    
    (This also works if you accidentally *delete* a file from your working copy.)
-
+   ```
+   git checkout -- a.py
+   ```
 
 3. How do you "undo" a commit? Suppose you want to **discard** some commits and move both HEAD and "master" to an earlier commit (so you can continue working from that commit).  Suppose the commit graph looks like this:
    ```
    aaaaa ---> bbbbb ---> ccccc ---> ddddd [HEAD -> master]
    ``` 
    What are the commands to do this:
-   - show all the commits and commit messages so you can find the one you want
-   - move HEAD and master to the commit with id bbbbb
-
-
+   - Show all the commits and commit messages so you can find the one you want
+     ```
+     git log
+     ```
+   - Move HEAD and master to the commit with id bbbbb
+     ```
+     git reset --hard bbbbb
+     ```
  
 
 ## 4. Branch and Merge
 
 1. What is the command to create a new branch named `dev-foo`?
-
- 
+   ```
+   git branch dev-foo
+   ```
 
 2. The command to display the name of your current branch is:
-
-
+   ```
+   git branch --show-current
+   ```
 
 3. To list the names of **all** branches, including remote branches, enter:
-
-
+   ```
+   git branch -a 
+   ```
 
 4. To switch your working copy to the branch named `dev-foo` enter:
-
+   ```
+   git checkout dev-foo
+   ```
 
 5. The steps to merge the work from `dev-foo` into the master branch are:
-   - write a brief description, with git commands
+   - Switch to the `master` branch using `git checkout`, then start merging using `git merge`.
+     ```
+     git checkout master
+     git merge dev-foo
+     ``` 
 
-
-6. Describe under what conditions a merge may fail.
-
+6. Describe under what conditions a merge may fail.<br/>
+   - When you changed the same part of the same file differently in the two branches you want to merge.
+   - When s file has been deleted in one of the two branches you want to merge.
 
 
 ## 5. Viewing Commits
@@ -162,20 +186,33 @@ test/
     Some versions of git have an *alias* "log1" for this (`git log1`).
 
 2. To show the history (as above) including all branches in the repository, use:
-
+   ```
+   git log --oneline --graph --decorate
+   ```
 
 3. To list all the files in the current branch of the repository, enter:
+   ```
+   git ls-tree -r [current branch's name]
+   ```
 
 
 ## 6. Favorites
 
-> TODO: Add at least 1 git usage task or situation that you'd like to remember, and the git command(s) to do it.
+> **Upload the local repository's changes to the remote repository**
+> ```
+> git push
+> ```
+> **Copy Changes from the remote repository**
+> ```
+> git pull
+> ```
 
 
 ---
 ## Resources
 
-> TODO: Add your own favorite Git resources
+> https://www.atlassian.com/git/tutorials
+> https://git-scm.com/docs
 
 Learn Git:
 
