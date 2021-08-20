@@ -1,7 +1,7 @@
 ## Using Git
 
 [1. Basics](#1-basics)<br/>
-[2. Adding and Changing Things](#2-adding-and-changing-things)  <br/> 
+[2. Adding and Changing Things](#2-adding-and-changing-things)<br/> 
 [3. Undoing Changes](#3-undoing-changes)<br/>
 [4. Branch and Merge](#4-branch-and-merge)<br/>
 [5. Viewing Commits](#5-viewing-commits)<br/>
@@ -19,17 +19,18 @@ For the MS Windows command prompt, when using the command substitute a backslash
 1. When working with Git locally, what are these?  Describe each one in a sentence
    * Staging area - files and changes marked for commit, but not yet committed.
    * Working copy - the copy of files you see and can edit. The working copy may include files ‘tracked’ by git and untracked files.
-   * master - a repository's primary branch.
+   * master - a repository's primary and default branch.
    * HEAD - a label that refers to the commit your working copy is based on.
 
 2. A git commit includes the author's name and email.  When you install git on a new machine (or in a new user account) you should perform these 2  git commands to tell git your name and email:
    ```
-   git config –global user.name “[name]”
-   git config –global user.email “[email address]”
+   git config –-global user.name “[name]”
+   git config –-global user.email “[email address]”
    ```
 3. If you want to specify a **different** name and email for a single project (instead of the global values in Item 2 above), in the working directory of that repository enter:
     ```
-    git init [repository name]
+    git config user.name “[name]”
+    git config user.email “[email address]”
     ``` 
 4. There are 2 ways to create a local Git repository.  What are they?
    - Take a local directory that is currently not under version control, and turn it into a Git repository.
@@ -58,7 +59,7 @@ test/
 
 1. What is the command to add README.md and *everything* in the `src` directory to the git staging area?
    ```
-   git add src
+   git add README.md src
    ```
 
 2. Write the command to add `test/test_a.py` to the staging area (but not any other files).
@@ -173,8 +174,8 @@ test/
      ``` 
 
 6. Describe under what conditions a merge may fail.<br/>
-   - When you changed the same part of the same file differently in the two branches you want to merge.
-   - When s file has been deleted in one of the two branches you want to merge.
+   - When the same part of the same file has been changed differently in the two branches you want to merge.
+   - When a file has been deleted in one of the two branches you want to merge.
 
 
 ## 5. Viewing Commits
@@ -187,12 +188,12 @@ test/
 
 2. To show the history (as above) including all branches in the repository, use:
    ```
-   git log --oneline --graph --decorate
+   git log --oneline --graph --all
    ```
 
 3. To list all the files in the current branch of the repository, enter:
    ```
-   git ls-tree -r [current branch's name]
+   git ls-tree -r HEAD
    ```
 
 
@@ -212,6 +213,7 @@ test/
 ## Resources
 
 > https://www.atlassian.com/git/tutorials
+> 
 > https://git-scm.com/docs
 
 Learn Git:
